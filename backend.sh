@@ -44,17 +44,18 @@ VALIDATE $? "install nodejs"
 
 id expense
 if [ $? -ne 0 ]; then
-   echo "creating expense user"
-    useradd --system --home /app --shell /sbin/nologin --comment "expense system user" expense
+    echo "creating expense user"
+    useradd expense
     VALIDATE $? "Creating system user"
 else
     echo -e "expense user is already created.....$Y SKIPPING $N"
 fi  
 
+
 mkdir -p /app 
 VALIDATE $? "create app folder"
 
-curl -o /tmp/backend.zip https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
+curl -o /tmp/backend.zip https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE 
 VALIDATE $? "Downloading backend application"
 
 cd /app 
@@ -69,13 +70,12 @@ VALIDATE $? "unzip backend"
 npm install &>>$LOG_FILE
 VALIDATE $? "Install dependencies"
 
-dnf install mysql -y  &>>$LOG_FILE
+dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "install mysql server"
 
-mysql -h $MYSQL_HOST -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h ${MYSQL_HOST} -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 
 
-systemctl daemon-reload
 systemctl enable backend &>>$LOG_FILE
 VALIDATE $? "Enable backend"
 systemctl restart backend &>>$LOG_FILE

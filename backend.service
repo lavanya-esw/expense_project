@@ -1,16 +1,10 @@
 [Unit]
-Description=Backend Service
-After=network.target
+Description = Backend Service
 
 [Service]
 User=expense
-WorkingDirectory=/app
-Environment=DB_HOST="172.31.72.137"
-Environment=DB_USER=expense
-Environment=DB_PASS=ExpenseApp@1
-Environment=DB_NAME=transactions
+Environment=DB_HOST="<MYSQL-SERVER-IPADDRESS>"
 ExecStart=/bin/node /app/index.js
-Restart=always
 SyslogIdentifier=backend
 
 [Install]
