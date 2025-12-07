@@ -11,7 +11,7 @@ START_TIME=$(date +%s)
 LOG_DIR=/var/log/expense
 SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
 LOG_FILE=${LOG_DIR}/${SCRIPT_NAME}.log
-MYSQL_HOST=mysql.awsdevops.fun
+MYSQL_HOST="172.31.75.243"
 mkdir -p $LOG_DIR
 
 #To check root user or not
