@@ -52,7 +52,7 @@ fi
 mkdir -p /app 
 VALIDATE $? "create app folder"
 
-curl -o curl -o /tmp/backend.zip https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
+curl -o /tmp/backend.zip https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
 VALIDATE $? "Downloading backend application"
 
 cd /app 
