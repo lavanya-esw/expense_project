@@ -8,10 +8,10 @@ B="\e[34m"
 
 SCRIPT_DIR=$PWD
 START_TIME=$(date +%s)
-LOG_DIR=/var/log/shell_roboshop_project
+LOG_DIR=/var/log/expense
 SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
 LOG_FILE=${LOG_DIR}/${SCRIPT_NAME}.log
-MONGODB_SERVER_IPADDRESS="mongodb.awsdevops.fun"
+MYSQL_HOST=mysql.awsdevops.fun
 mkdir -p $LOG_DIR
 
 #To check root user or not
@@ -70,7 +70,7 @@ VALIDATE $? "Install dependencies"
 dnf install mysql -y  &>>$LOG_FILE
 VALIDATE $? "install mysql server"
 
-mysql -h mysql.awsdevops.fun -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h $MYSQL_HOST -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 
 
 systemctl daemon-reload
