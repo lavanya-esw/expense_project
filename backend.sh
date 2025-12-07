@@ -32,6 +32,8 @@ VALIDATE()
 
 cp $SCRIPT_DIR/backend.service /etc/systemd/system/backend.service
 VALIDATE $? "Copy systemctl service"
+systemctl daemon-reload
+systemctl enable backend &>>$LOG_FILE
 
 dnf module disable nodejs -y &>>$LOG_FILE
 VALIDATE $? "disable nodejs"
