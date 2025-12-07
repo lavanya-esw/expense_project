@@ -67,7 +67,7 @@ VALIDATE $? "unzip backend"
 npm install &>>$LOG_FILE
 VALIDATE $? "Install dependencies"
 
-dnf install mysql -y $>>$LOG_FILE
+dnf install mysql -y  &>>$LOG_FILE
 VALIDATE $? "install mysql server"
 
 mysql -h mysql.awsdevops.fun -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
