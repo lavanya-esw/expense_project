@@ -46,7 +46,7 @@ if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "expense system user" expense
     VALIDATE $? "Creating system user"
 else
-    echo -e "roboshop user is already created.....$Y SKIPPING $N"
+    echo -e "expense user is already created.....$Y SKIPPING $N"
 fi  
 
 mkdir -p /app 
